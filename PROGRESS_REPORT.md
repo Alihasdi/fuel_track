@@ -2,7 +2,7 @@
 
 ## Written update (paste into Google Classroom)
 
-We finished the main Flutter app for Fuel Track: Home, Add Refill, History, Refill Detail, Statistics, Prediction and Profile, each in its own file in `lib/screens/` and all reachable from Home with `Navigator.push` and `Navigator.pop`. The Add Refill form uses TextFields with controllers that are disposed, shows a SnackBar when input is empty, and new refills appear in the History list built with `ListView.builder`. Right now we are working on saving refills on the device so the data stays after the app is closed, and on real reminder notifications. Our blocker is that the data still resets on restart, and we still need to set up the shared GitHub repo so every member can commit from their own account.
+So far we finished the main part of our Fuel Track app in Flutter. It has 7 screens (Home, Add Refill, History, Refill Detail, Statistics, Prediction and Profile), and you can reach all of them from the Home screen. You can add a refill with the form, and if you leave it empty a SnackBar tells you to fill it in, then the new refill shows up in the History list. Right now we are working on saving the data on the phone, because when you close the app everything goes back to the sample data. What's blocking us is that saving data is still new to us, and we still need every member to push a commit from their own GitHub account.
 
 ## Checklist against the assignment
 
