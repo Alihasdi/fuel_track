@@ -11,6 +11,20 @@ class Refill {
     required this.price,
     required this.station,
   });
+
+  Refill copyWith({
+    DateTime? date,
+    double? liters,
+    int? price,
+    String? station,
+  }) {
+    return Refill(
+      date: date ?? this.date,
+      liters: liters ?? this.liters,
+      price: price ?? this.price,
+      station: station ?? this.station,
+    );
+  }
 }
 
 /// The user's settings shown on the Profile screen.

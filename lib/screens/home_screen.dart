@@ -60,7 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return DateTime(now.year, now.month, now.day - days);
   }
 
-  Refill get _lastRefill => _refills.first;
+  Refill get _lastRefill => _refills.isEmpty
+      ? Refill(
+          date: DateTime.now(),
+          liters: 0,
+          price: 0,
+          station: 'No refill yet',
+        )
+      : _refills.first;
 
   DateTime get _nextRefill =>
       _lastRefill.date.add(Duration(days: _settings.refillPeriodDays));
@@ -102,6 +109,9 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (_) => HistoryScreen(
           refills: _refills,
           unit: _settings.unitShort,
+          onChanged: () {
+            if (mounted) setState(() {});
+          },
         ),
       ),
     );

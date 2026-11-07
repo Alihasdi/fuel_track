@@ -28,6 +28,29 @@ class PredictionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (refills.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 72,
+          title: const Text('Prediction'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
+        body: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: Text(
+              'Add a refill first to see your prediction.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        ),
+      );
+    }
+
     final gap = _averageGapDays();
     final last = refills.first;
     final upcoming = List.generate(

@@ -6,8 +6,9 @@ import '../utils/formatters.dart';
 
 class AddRefillScreen extends StatefulWidget {
   final String unit;
+  final Refill? initialRefill;
 
-  const AddRefillScreen({super.key, required this.unit});
+  const AddRefillScreen({super.key, required this.unit, this.initialRefill});
 
   @override
   State<AddRefillScreen> createState() => _AddRefillScreenState();
@@ -18,6 +19,18 @@ class _AddRefillScreenState extends State<AddRefillScreen> {
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _stationController = TextEditingController();
   DateTime _date = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    final refill = widget.initialRefill;
+    if (refill != null) {
+      _date = refill.date;
+      _litersController.text = refill.liters.toString();
+      _priceController.text = refill.price.toString();
+      _stationController.text = refill.station;
+    }
+  }
 
   @override
   void dispose() {
@@ -80,7 +93,7 @@ class _AddRefillScreenState extends State<AddRefillScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 72,
-        title: const Text('Add Refill'),
+        title: Text(widget.initialRefill == null ? 'Add Refill' : 'Edit Refill'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () => Navigator.pop(context),
@@ -149,7 +162,7 @@ class _AddRefillScreenState extends State<AddRefillScreen> {
                   textStyle: AppTheme.buttonText(22),
                 ),
                 onPressed: _save,
-                child: const Text('Save refill'),
+                child: Text(widget.initialRefill == null ? 'Save refill' : 'Update refill'),
               ),
             ),
           ],
